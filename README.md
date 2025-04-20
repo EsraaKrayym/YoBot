@@ -51,3 +51,5 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/1234567890/yourwebhooktoken
 3. See your message in discord channel
 
 ```
+kubectl apply -f argocd-app.yaml
+kubectl apply -f deployment.yaml
