@@ -22,7 +22,7 @@ if not MODEL_HUMOR_PATH:
     raise ValueError("MODEL_HUMOR_PATH is missing in the .env file.")
 
 # Configure Ollama client
-ollama_host = os.getenv('OLLAMA_HOST', 'http://ollama-service:11434')
+ollama_host = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
 ollama_client = ollama.Client(host=ollama_host)
 
 # Pull model from Ollama using the ollama package
@@ -128,10 +128,13 @@ async def send_discord_message_async(message):
 
         async with aiohttp.ClientSession() as session:
             async with session.post(DISCORD_WEBHOOK_URL, json=payload, headers=headers) as response:
+                logging.debug(f"Discord status code: {response.status}")
+                text = await response.text()
+                logging.debug(f"Discord response body: {text}")
                 if response.status == 204:
-                    logging.debug("Message sent to Discord.")
+                    logging.info("✅ Message sent to Discord.")
                 else:
-                    logging.error(f"Discord responded with status: {response.status}")
+                    logging.error(f"❌ Discord responded with status: {response.status}")
     except Exception as e:
         logging.error(f"Error sending to Discord: {e}")
 
