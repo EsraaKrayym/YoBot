@@ -19,7 +19,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ EsraaKrayym }}  # Use the GitHub username (actor)
+          username: ${{ esraakrayym }}  # Use the GitHub username (actor)
           password: ${{ MY_SECRET_TOKEN }}  # Use the secret token
 
       # Build the Docker image
