@@ -13,9 +13,9 @@ spec:
       labels:
         app: yobot
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: yobot
           image: ghcr.io/esraakrayym/yobot-with-trivy-output:latest
-          command: ["/bin/bash", "-c", "while true; do sleep 3600; done"]
-      imagePullSecrets:
-        - name: ghcr-secret  # Das ImagePullSecret, das du vorher erstellt hast
+          command: [ "/bin/bash", "-c", "while true; do sleep 3600; done" ]
